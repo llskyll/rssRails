@@ -1,0 +1,12 @@
+作業進行
+#UserBlogInfoを追加
+rails generate scaffold UserBlogInfo userId:integer userName:string 
+#gem追加
+feedjira
+
+
+			            <%
+			              if count.to_i == (@sorted.size - 5) then
+                            break
+                        end
+                        %>

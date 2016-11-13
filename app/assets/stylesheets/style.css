@@ -1,0 +1,37 @@
+.tr-header1 a.navbar-brand {
+  color: #fff;
+  font-size: 22px;
+  padding-top: 11px;
+}
+.tr-header2 a {
+  color: #333;
+}
+.tr-header2 a.navbar-brand {
+  font-size: 22px;
+  padding-top: 11px;
+}
+.tr-header2 .navbar-inverse a {
+  color: #fff;
+}
+.tr-header2 .navbar-inverse a:hover {
+  background-color: #333;
+}
+.tr-header3 a {
+  color: #333;
+}
+.tr-masonry-container {
+  margin: 0 auto;
+}
+.tr-masonry-item {
+  width: 240px;
+}
+.tr-section-striped {
+  padding: 20px 0;
+}
+.tr-section-striped:nth-child(2n) {
+  background-color: #eee;
+}
+.tr-footer {
+  background-color: #ddd;
+  padding: 10px 0;
+}

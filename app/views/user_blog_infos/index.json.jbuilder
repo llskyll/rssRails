@@ -1,0 +1,1 @@
+json.array! @user_blog_infos, partial: 'user_blog_infos/user_blog_info', as: :user_blog_info
