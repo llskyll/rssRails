@@ -78,31 +78,24 @@
 	<div class="row">
 		<div class="col-sm-8">
 		    <main>
-		        <%= @test %>
 			    <p><img src="" width="15%"></p>		
 			    <h2>新着記事(件数:<%= @size %>(ページ<%= @page %>)</h2>
-                <% @sorted[(@page_size)-(@page*@page_su), @page_su].reverse_each do |feed, count| %>
-                        <div class="media">
-                            <div class="media-body">
-                                <br />
-               				    <dl>
-               				        <%= count %>
-               				        <%= feed.published %>
-            						<dt>
-            						  <%= link_to feed.title.truncate(35), feed.url, :target=>["_blank"] %>
-            						</dt>
-        					    </dl>
-    				        </div>
-			            </div>
-               <% end %>
-                <ul class="pagination">
-                  <% @pages.each do |page| %>
-                  <li>
-                      <%= link_to "#{page}", "https://ruby-rss-llskyll.c9users.io?page=#{page}"%>
-                  </li>
-                  <% end %>
-                </ul>
-		</main>
+                <% @rss_list.each do |feed, count| %>
+                    <div class="media">
+                        <div class="media-body">
+                            <br />
+                            <dl>
+                                <%= count %>
+                                <%= feed.published %>
+                                <dt>
+                                    <%= link_to feed.title.truncate(35), feed.url, :target=>["_blank"] %>
+                                </dt>
+                            </dl>
+                        </div>
+                    </div>
+                <% end %>
+                <%= paginate @rss_list %>
+		    </main>
 		</div>
 		<div class="col-sm-4">
 			<!-- 広告表示部分 -->

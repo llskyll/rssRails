@@ -1,12 +1,10 @@
-作業進行
-#UserBlogInfoを追加
-rails generate scaffold UserBlogInfo userId:integer userName:string 
-#gem追加
-feedjira
+rails generate migration AddUserBlogInfos blogUrl:string feedUrl:string 
 
+rails g migration add_user_blog_infos blogUrl:string feedUrl:string 
 
-			            <%
-			              if count.to_i == (@sorted.size - 5) then
-                            break
-                        end
-                        %>
+rake db:migrate:reset
+
+git remote add origin https://github.com/llskyll/rssRails.git
+
+#kaminariでページネーション実装方法
+http://qiita.com/Konboi@github/items/ef62a511ea35270b71be

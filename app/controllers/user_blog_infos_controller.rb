@@ -2,14 +2,14 @@ class UserBlogInfosController < ApplicationController
   before_action :set_user_blog_info, only: [:show, :edit, :update, :destroy]
    require 'feedjira'
 
-$alist = []
+    $alist = []
 
-def perse(url)
-  feed = Feedjira::Feed.fetch_and_parse(url)
-  feed.entries.each do |item|
-    $alist.push(item)
-  end
-end
+    def perse(url)
+      feed = Feedjira::Feed.fetch_and_parse(url)
+      feed.entries.each do |item|
+        $alist.push(item)
+      end
+    end
 
   # GET /user_blog_infos
   # GET /user_blog_infos.json
@@ -28,33 +28,18 @@ end
           puts "no"
         end
     end
-          
+    
     url.each do |item|
       perse(item)
     end
-    #ページ数
-    @page_su = 10
-    @size = $alist.size
-    # 1ページあたり10項目を表示するとして、全ページ数を取得
-    all_page = (@size.to_i / @page_su).ceil
-    # 全ページ数が10以下なら1から全ページ数までを配列にする
-    # 全ページ数が10より大きいならカレントページを中心に10ページ分を配列にする
-    if all_page > 10
-      first = [1,  @page - 4].max
-      first = [first, all_page - 9].min
-      last  = [10, @page + 5].max
-      last  = [last, all_page].min
-    else
-      @pages = [*1..all_page]
-    end
-    
-    #時系列順にソート
+
+    #時系列順にソート　-にすることで降順にする。
     @sorted = $alist.sort{|aa, bb|
-        aa.published.to_i <=> bb.published.to_i
+        -(aa.published.to_i <=> bb.published.to_i)
       }
     #ページサイズ
-    @page_size = @sorted.size
-
+    #ページネーション設定
+    @rss_list = Kaminari.paginate_array(@sorted).page(params[:page]).per(10)
   end
 
   #ra GET /user_blog_infos/1
